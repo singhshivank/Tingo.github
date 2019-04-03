@@ -9,6 +9,7 @@ export class AuthService {
   logout(): void {
     localStorage.setItem('isLoggedIn', "false");
     localStorage.removeItem('token');
+    localStorage.removeItem('Uid');
   } 
 
 

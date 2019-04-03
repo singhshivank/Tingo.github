@@ -52,6 +52,10 @@ export class LoginComponent implements OnInit {
         // console.log("this is user data from login",this.users[0].email ,this.users[0].password );
       });
 
+      if(localStorage.getItem("Uid")){
+        this.router.navigate(['/products',localStorage.getItem("Uid")]);
+      }
+
   }
 
   get fieldValues() {
@@ -88,6 +92,7 @@ export class LoginComponent implements OnInit {
      
       localStorage.setItem('isLoggedIn',"true");
       localStorage.setItem('token',this.email);
+      localStorage.setItem('Uid',this.uid)
       this.login();
       this.gotoProductDetails(this.uid);
 
