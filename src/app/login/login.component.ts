@@ -88,6 +88,7 @@ export class LoginComponent implements OnInit {
      
       localStorage.setItem('isLoggedIn',"true");
       localStorage.setItem('token',this.email);
+      localStorage.setItem('Uid',this.uid);
       this.login();
       this.gotoProductDetails(this.uid);
 

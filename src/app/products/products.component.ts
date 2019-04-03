@@ -32,6 +32,11 @@ export class ProductsComponent implements OnInit {
     
     this.userid= parseInt(this.route.snapshot.paramMap.get('uid'));
 
+    if( localStorage.getItem('Uid')){
+      this.router.navigate(['/products', localStorage.getItem("Uid")])
+
+    }
+
     if(this.userid == 6189){
       this.displaywishlist=false  }
     
@@ -77,7 +82,7 @@ export class ProductsComponent implements OnInit {
   }
 
   addtocart(pid){
-    alert("Added to your cart")
+    alert("Added to cart")
     console.log("show product cart", pid , this.userid);
     this.url = "https://tingo-b5483.firebaseio.com/cart/cart"+this.userid+"/pid.json"
     console.log(this.url);
