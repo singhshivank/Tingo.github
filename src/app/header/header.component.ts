@@ -60,6 +60,7 @@ export class HeaderComponent implements OnInit {
 
     
   }
+  //filter finction to get the data on the basis of Pcategories
   filter(key,value) {
     // console.log("teena");
     this.filtervalue[key] = value;
