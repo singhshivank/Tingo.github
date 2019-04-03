@@ -79,25 +79,25 @@ export class ApidataService {
   updatecart(url,ucart:any): Observable<any> {
     return this.http.put<any>(url, ucart, this.httpOptions)
   }
-
+// To set the filtered products.....
+  setData(filtervalue) {
+    this.products2=this.products;
+    
   
+      this.products2 = this.products2.filter((products) => {
+        console.log(filtervalue.Pcategories);
+        
+        if (products.Pcategories == filtervalue.Pcategories) {
+          return true;
+        }
+        return false
   
-setData(filtervalue) {
-  this.products2=this.products;
-  
+      });
+      console.log(this.products2);
+      this.arrobj.next(this.products2);
+    }
 
-    this.products2 = this.products2.filter((products) => {
-      console.log(filtervalue.Pcategories);
-      
-      if (products.Pcategories == filtervalue.Pcategories) {
-        return true;
-      }
-      return false
 
-    });
-    console.log(this.products2);
-    this.arrobj.next(this.products2);
-  }
 
   getusers(): Observable<any> {
     return this.http.get<any>('https://tingo-b5483.firebaseio.com/users.json');
