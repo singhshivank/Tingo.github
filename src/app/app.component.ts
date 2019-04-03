@@ -14,14 +14,14 @@ export class AppComponent {
   title = 'rnd';
   message;
 
- 
+
 
   constructor(private messagingService: MessagingService, changeDetectorRef: ChangeDetectorRef, media: MediaMatcher) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
     this.mobileQuery.addListener(this._mobileQueryListener);
   }
-  
+
   mobileQuery: MediaQueryList;
 
   private _mobileQueryListener: () => void;
@@ -32,7 +32,7 @@ export class AppComponent {
   }
 
   // sendPushNotification() {
-   
+
 
   //   this.messagingService.sendPushMessage("Web push notification", "HI,visit.  https://angular.io/");
   // }
