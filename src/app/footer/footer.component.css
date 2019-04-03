@@ -1,0 +1,21 @@
+.navbar-default
+{
+    background-color: #1d2d3d;
+    color: white;
+    height: 100%;
+}
+li
+{
+    list-style-type: none;
+}
+.rowContributers
+{
+    text-align: center;
+}
+a
+{
+    color:white;
+}
+a :hover{
+color: white;
+}

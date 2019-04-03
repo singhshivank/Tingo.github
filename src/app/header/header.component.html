@@ -1,0 +1,41 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="navbar-default">
+  <div class="navbar">
+    <div class="col-sm-2 logo">
+      <a href="#default" class="logo">Tingo</a>
+    </div>
+    <div class="col-sm-2 category"><a (click)="filter('Pcategories','Clothing')">Clothing</a></div>
+    <div class="col-sm-2 category"><a (click)="filter('Pcategories','Books')">Books</a></div>
+    <div class="col-sm-2 category"><a (click)="filter('Pcategories','Electronics')">Electronics</a></div>
+    
+    <div class="col-sm-1 category">
+      <div class="header-right">
+        <a href="javascript:void(0);"><i class="fa fa-user-circle" aria-hidden="false" style="font-size:24px;color:aliceblue" ></i>Login</a>
+      </div>
+    </div>
+    <div class="col-sm-1">
+      <div class="header-right1">
+        <a href="javascript:void(0);" (click)="logout()"><i class="fa fa-power-off" aria-hidden="true"></i> Logout</a>
+      </div>
+    </div>
+    <div class="col-sm-1">
+        <div class="cart-bttn">
+        <i class="fa fa-shopping-cart" style="font-size:24px;color:aliceblue"  aria-hidden="false" (click)="getcart()"type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></i>
+            <div *ngIf="showcart"  class="cartdata-show dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <div  class="dropdown-item cartdata"  *ngFor="let item of cartproducts" (click)="filter('Pcategories',item.Pcategories)" >{{item.Pcategories}}</div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-1">
+        <div class="wishlist-bttn">
+        <i class="fa fa-heart" style="font-size:24px;color:aliceblue"  aria-hidden="false" type="button"></i>
+        </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
