@@ -60,6 +60,8 @@ export class ProductsComponent implements OnInit {
       });
     // console.log("sjgjy iuhuds",this.products);
     console.log(this.servicedata.product());
+
+
   }
 
   public gotoProductDetails(Pid?) {
@@ -77,29 +79,36 @@ export class ProductsComponent implements OnInit {
   }
 
   addtocart(pid){
-    alert("Added to your cart")
-    console.log("show product cart", pid , this.userid);
-    this.url = "https://tingo-b5483.firebaseio.com/cart/cart"+this.userid+"/pid.json"
-    console.log(this.url);
-        
-    // this.cartproducts=[];
-    console.log(this.allcart);
     
-    this.allcart.map(ele=>{
-      if (ele.id == this.userid){
-        this.cartproid = Object.keys(ele.pid).map(elem => {
-          return ele.pid[elem];
-        });
-        
-      }
-    })
-
-    this.cartproid.push(pid);
-
-    console.log("qwertyui",this.cartproid);
+    if(localStorage.getItem('isLoggedIn')=="false"){
+      this.router.navigate(['/login']);
+    }
+    else{
+      alert("Added to your cart")
+      console.log("show product cart", pid , this.userid);
+      this.url = "https://tingo-b5483.firebaseio.com/cart/cart"+this.userid+"/pid.json"
+      console.log(this.url);
+          
+      // this.cartproducts=[];
+      console.log(this.allcart);
+      
+      this.allcart.map(ele=>{
+        if (ele.id == this.userid){
+          this.cartproid = Object.keys(ele.pid).map(elem => {
+            return ele.pid[elem];
+          });
+          
+        }
+      })
+  
+      this.cartproid.push(pid);
+  
+      console.log("qwertyui",this.cartproid);
+      
+  
+      this.servicedata.updatecart(this.url,this.cartproid).pipe().subscribe();
+    }
     
-
-    this.servicedata.updatecart(this.url,this.cartproid).pipe().subscribe();
 
   }
  
