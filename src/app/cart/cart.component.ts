@@ -53,6 +53,11 @@ export class CartComponent implements OnInit {
         this.getcart()
         // console.log("from header",this.products);
       });
+
+        
+    if(localStorage.getItem('isLoggedIn')=="false"){
+      this.router.navigate(['/login']);
+    }
       
   }
 
