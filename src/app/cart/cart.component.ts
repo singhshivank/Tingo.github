@@ -20,6 +20,8 @@ export class CartComponent implements OnInit {
 
   cartproducts:any;
   cartproid:any;
+
+  url:any;
   
 
   constructor(public route: ActivatedRoute,private router: Router,public authService: AuthService,public servicedata: ApidataService) { }
@@ -51,13 +53,18 @@ export class CartComponent implements OnInit {
         this.getcart()
         // console.log("from header",this.products);
       });
+
+        
+    if(localStorage.getItem('isLoggedIn')=="false"){
+      this.router.navigate(['/login']);
+    }
       
   }
 
   getcart(){
 
     this.cartproducts=[];
-    console.log(this.allcart);
+    console.log("",this.allcart);
     
     this.allcart.map(ele=>{
       if (ele.id == this.userid){
@@ -71,7 +78,7 @@ export class CartComponent implements OnInit {
     
     // console.log("header" ,this.products);
     // console.log("all product ids",this.cartproid);
-    this.cartproid.map((ele)=>{
+    this.cartproid.map((ele )=>{
       // console.log("sdkuhhu",ele);
       
       this.products.map((pro)=>{
@@ -82,11 +89,47 @@ export class CartComponent implements OnInit {
         }
       })
     })
-    console.log("all products",this.cartproducts);   
-    this.showcart=true;
+    // console.log("all products",this.cartproducts);   
+    
   }
+  
   arrystar(n: number): any[] {
     return Array(n);
+  }
+
+  remove(id){
+    alert(id);
+    this.cartproducts=[];
+    // console.log(this.allcart);
+    
+    this.allcart.map(ele=>{
+      if (ele.id == this.userid){
+        this.cartproid = Object.keys(ele.pid).map(elem => {
+          return ele.pid[elem];
+        });
+      }
+    })
+
+    // console.log("true value",this.cartproid);
+    
+    // console.log("header" ,this.products);
+    // console.log("all product ids",this.cartproid);
+    this.cartproid.map((ele,index)=>{ 
+      // console.log("sdkuhhu",ele);
+      if (ele == id){
+    this.url = "https://tingo-b5483.firebaseio.com/cart/cart"+this.userid+"/pid/"+index+".json"
+      //  console.log(this.url);
+       this.servicedata.removefromcart(this.url).pipe().subscribe()    
+      // this.getcart();
+      }
+      
+
+
+      
+    })
+    
+
+    
   }
   
 

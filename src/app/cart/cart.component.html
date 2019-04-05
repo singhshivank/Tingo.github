@@ -1,8 +1,15 @@
+<h1>Your cart</h1>
+<hr>
 <div>
   <body class="body">
+    
       <div class="row">
         <div class="col-md-4" *ngFor="let item of cartproducts">
+          
           <div class="maincontainer">
+              <div>
+                  <i class="fa fa-remove notlink" (click)="remove(item.Pid)"  style="font-size:25px"></i>
+                </div>
             <div class="resultGiftBox">
               <a>
                 <img
@@ -19,6 +26,7 @@
                 <div>
                 <span *ngFor="let item of arrystar(item.Prating); let i = index;" class="fa fa-star checked" style="color: orange;"></span>
                 </div>
+               
                 
               </div>
             </div>

@@ -66,7 +66,7 @@ export class ApidataService {
         return this.apidata[apidata];
       });
 
-      console.log(this.products);
+      console.log("teena ",this.products);
     });
   }
   getdata(){
@@ -80,19 +80,25 @@ export class ApidataService {
     return this.http.put<any>(url, ucart, this.httpOptions)
   }
 
-  
-  
-setData(filtervalue) {
-  this.products2=this.products;
-  
+  removefromcart(url:any):Observable<any>{
+    console.log("data removed",url);
+    return this.http.delete<any>(url,this.httpOptions) 
+  }
 
+
+setData(filtervalue) {
+  console.log("from filter",this.products);
+  
+  this.products2=this.products;
+  console.log(this.products2);
+  
     this.products2 = this.products2.filter((products) => {
       console.log(filtervalue.Pcategories);
       
       if (products.Pcategories == filtervalue.Pcategories) {
         return true;
       }
-      return false
+      return false;
 
     });
     console.log(this.products2);

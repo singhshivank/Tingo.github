@@ -5,7 +5,6 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
-import { AuthService } from './auth.service';
 
 
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +22,7 @@ import { CartComponent } from './cart/cart.component';
 /*const appRoutes: Routes =[
  {path:}
 ]*/
+import {  ApidataService } from './apidata.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessagingService } from './messaging.service';
 import { AsyncPipe } from '@angular/common';
@@ -58,7 +58,7 @@ import { FooterComponent } from './footer/footer.component';
     AngularFireMessagingModule,
     AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [AuthGuard, MessagingService, AsyncPipe],
+  providers: [AuthGuard, ApidataService, MessagingService, AsyncPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

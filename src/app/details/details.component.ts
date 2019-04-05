@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { ApidataService } from "../apidata.service";
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-details',
@@ -14,7 +16,7 @@ export class DetailsComponent implements OnInit {
   products:any;
   Pdetails:any;
 
-  constructor(public servicedata: ApidataService,public route: ActivatedRoute) { }
+  constructor(public servicedata: ApidataService,private router: Router,public route: ActivatedRoute) { }
 
   ngOnInit() {
     this.productid= parseInt(this.route.snapshot.paramMap.get('Pid'));
@@ -32,7 +34,10 @@ export class DetailsComponent implements OnInit {
       console.log(this.products);
       this.getproductdetails();
     });
-    
+
+    if(localStorage.getItem('isLoggedIn')=="false"){
+      this.router.navigate(['/login']);
+    }    
   }
 
   getproductdetails(){

@@ -84,6 +84,7 @@ a{
 .cartandwish{
     margin-left: 0px;
     padding-top: 1px;
+    padding-left: 200px;
 }
 
 .wishlist .cartandwish:hover {
@@ -91,4 +92,5 @@ a{
 }
 .cartandwish .a{
     color: black;
+    
 }

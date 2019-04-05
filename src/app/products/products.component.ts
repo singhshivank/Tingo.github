@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ApidataService } from "../apidata.service";
 import { Router } from "@angular/router";
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-products",
@@ -11,31 +11,37 @@ import { ActivatedRoute} from '@angular/router';
 export class ProductsComponent implements OnInit {
   apidata: any;
   products: any;
-  userid:any;
-  url:any;
-  allcart:any;
-  cartproducts:any;
-  cartproid :any;
+  userid: any;
+  url: any;
+  allcart: any;
+  cartproducts: any;
+  cartproid: any;
 
   apiuser: any;
   users: any;
 
-  displaywishlist:boolean=true;
+  displaywishlist: boolean = true;
 
-  constructor(public servicedata: ApidataService, private router: Router ,public route: ActivatedRoute) {
+  constructor(public servicedata: ApidataService, private router: Router, public route: ActivatedRoute) {
     this.servicedata.arrobj.subscribe(
-      (data)=>{this.products=data}
+      (data) => { this.products = data }
     )
   }
 
   ngOnInit() {
-    
-    this.userid= parseInt(this.route.snapshot.paramMap.get('uid'));
 
-    if(this.userid == 6189){
-      this.displaywishlist=false  }
-    
-      this.servicedata
+    this.userid = parseInt(this.route.snapshot.paramMap.get('uid'));
+
+    if (localStorage.getItem('Uid')) {
+      this.router.navigate(['/products', localStorage.getItem("Uid")])
+
+    }
+
+    if (this.userid == 6189) {
+      this.displaywishlist = false
+    }
+
+    this.servicedata
       .getcart()
       .pipe()
       .subscribe(value => {
@@ -56,51 +62,60 @@ export class ProductsComponent implements OnInit {
         this.products = Object.keys(this.apidata).map(apidata => {
           return this.apidata[apidata];
         });
+        
         console.log(this.products);
       });
     // console.log("sjgjy iuhuds",this.products);
-    console.log(this.servicedata.product());
+  this.servicedata.product()
   }
 
   public gotoProductDetails(Pid?) {
-    this.router.navigate(['/details', Pid]).then( (e) => {
+    this.router.navigate(['/details', Pid]).then((e) => {
       if (e) {
         console.log(" successful! in comtent");
       } else {
         console.log(" failed! from content ");
       }
     });
-   
+
   }
   arrystar(n: number): any[] {
     return Array(n);
   }
 
-  addtocart(pid){
-    alert("Added to your cart")
-    console.log("show product cart", pid , this.userid);
-    this.url = "https://tingo-b5483.firebaseio.com/cart/cart"+this.userid+"/pid.json"
-    console.log(this.url);
-        
-    // this.cartproducts=[];
-    console.log(this.allcart);
-    
-    this.allcart.map(ele=>{
-      if (ele.id == this.userid){
-        this.cartproid = Object.keys(ele.pid).map(elem => {
-          return ele.pid[elem];
-        });
-        
-      }
-    })
+  addtocart(pid) {
+    // console.log("qwertyui",this.cartproid);
 
-    this.cartproid.push(pid);
+    if (localStorage.getItem('isLoggedIn') == "false") {
+      this.router.navigate(['/login']);
+    }
+    else {
+      alert("Added to your cart")
+      console.log("show product cart", pid, this.userid);
+      this.url = "https://tingo-b5483.firebaseio.com/cart/cart" + this.userid + "/pid.json"
+      console.log(this.url);
 
-    console.log("qwertyui",this.cartproid);
-    
+      // this.cartproducts=[];
+      console.log(this.allcart);
 
-    this.servicedata.updatecart(this.url,this.cartproid).pipe().subscribe();
+      this.allcart.map(ele => {
+        if (ele.id == this.userid) {
+          this.cartproid = Object.keys(ele.pid).map(elem => {
+            return ele.pid[elem];
+          });
+
+        }
+      })
+
+      this.cartproid.push(pid);
+
+      console.log("qwertyui", this.cartproid);
+
+
+      this.servicedata.updatecart(this.url, this.cartproid).pipe().subscribe();
+    }
+
 
   }
- 
+
 }

@@ -52,22 +52,24 @@ export class LoginComponent implements OnInit {
         // console.log("this is user data from login",this.users[0].email ,this.users[0].password );
       });
 
+      if(localStorage.getItem("Uid")){
+        this.router.navigate(['/products',localStorage.getItem("Uid")]);
+      }
+
   }
 
   get fieldValues() {
     return this.userLogin.controls;
   }
   
-
-  login() {
+  login( ) {
+    // console.log(this.email, this.password,"from login");
+    
     this.servicedata.login(this.email, this.password);
     this.email = this.password = '';    
   }
 
   onSubmit(){
-
-   
-
     console.log(this.allpwd);
     
     const result = this.allemail.filter(email => email == this.email);
@@ -88,7 +90,7 @@ export class LoginComponent implements OnInit {
      
       localStorage.setItem('isLoggedIn',"true");
       localStorage.setItem('token',this.email);
-      this.login();
+      localStorage.setItem('Uid',this.uid)
       this.gotoProductDetails(this.uid);
 
     

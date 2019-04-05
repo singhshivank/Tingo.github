@@ -1,5 +1,11 @@
-
-
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+    margin-top: 1%;
+}
+.notlink{
+    cursor: pointer;
+}
 
 .maincontainer {
     padding-bottom: 0px;

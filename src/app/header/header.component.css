@@ -19,12 +19,19 @@
     font-size: 30px;
     color: white;
     margin-top: 20px;
+    text-decoration: none;
+    cursor: pointer;
 
+}
+.notlink{
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .category{
     margin-left: 0px;
     padding-top: 30px;
+    cursor: pointer;
 }
 
 .header-right {
