@@ -61,10 +61,10 @@ export class ProductsComponent implements OnInit {
         this.products = Object.keys(this.apidata).map(apidata => {
           return this.apidata[apidata];
         });
-        console.log(this.products);
+        // console.log(this.products);
       });
     // console.log("sjgjy iuhuds",this.products);
-    console.log(this.servicedata.product());
+    // console.log(this.servicedata.product());
   }
 
   public gotoProductDetails(Pid?) {
@@ -85,10 +85,10 @@ export class ProductsComponent implements OnInit {
     alert("Added to cart")
     console.log("show product cart", pid , this.userid);
     this.url = "https://tingo-b5483.firebaseio.com/cart/cart"+this.userid+"/pid.json"
-    console.log(this.url);
+    // console.log(this.url);
         
     // this.cartproducts=[];
-    console.log(this.allcart);
+    // console.log(this.allcart);
     
     this.allcart.map(ele=>{
       if (ele.id == this.userid){
@@ -101,7 +101,7 @@ export class ProductsComponent implements OnInit {
 
     this.cartproid.push(pid);
 
-    console.log("qwertyui",this.cartproid);
+    // console.log("qwertyui",this.cartproid);
     
 
     this.servicedata.updatecart(this.url,this.cartproid).pipe().subscribe();

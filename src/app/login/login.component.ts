@@ -58,16 +58,14 @@ export class LoginComponent implements OnInit {
     return this.userLogin.controls;
   }
   
-
-  login() {
+  login( ) {
+    // console.log(this.email, this.password,"from login");
+    
     this.servicedata.login(this.email, this.password);
     this.email = this.password = '';    
   }
 
   onSubmit(){
-
-   
-
     console.log(this.allpwd);
     
     const result = this.allemail.filter(email => email == this.email);
@@ -89,7 +87,6 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('isLoggedIn',"true");
       localStorage.setItem('token',this.email);
       localStorage.setItem('Uid',this.uid);
-      this.login();
       this.gotoProductDetails(this.uid);
 
     

@@ -66,8 +66,10 @@ export class HeaderComponent implements OnInit {
     // console.log(key,value);
     this.servicedata.setData(this.filtervalue)
   }
+
+  
   logout(): void {
-    // console.log("Logout");
+    this.servicedata.logout();
     this.authService.logout();
     this.router.navigate(['/login']);
   }

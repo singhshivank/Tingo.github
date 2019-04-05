@@ -80,8 +80,12 @@ export class ApidataService {
     return this.http.put<any>(url, ucart, this.httpOptions)
   }
 
-  
-  
+  removefromcart(url:any):Observable<any>{
+    console.log("data removed",url);
+    return this.http.delete<any>(url,this.httpOptions) 
+  }
+
+
 setData(filtervalue) {
   this.products2=this.products;
   
